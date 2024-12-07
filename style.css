@@ -12,7 +12,7 @@ body {
 	background-color:rgb(213, 160, 33);
 }
 
-.photo {
+#photo {
 	border:2px solid black;
 	width:300px;
 	
