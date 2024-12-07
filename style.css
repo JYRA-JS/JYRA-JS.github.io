@@ -15,13 +15,13 @@ body {
 
 .photo {
 	border:2px solid black;
-	width:100px;
+	width:150px;
 	
 	
 }
 
 .initial{
-	size:1.5em;
+	font-size:1.5em;
 }
 h2:hover {
     background-color: rgb(213, 160, 33);
