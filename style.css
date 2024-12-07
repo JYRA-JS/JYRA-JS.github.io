@@ -2,8 +2,8 @@
 h3 { 
 	font-family:"verdana", cursive; font-size:40px; color:black; 
 	border:2px solid black;
-	width:400px;
-	height:9pk;
+	width:600px;
+	height:15pk;
 	background-color:rgb(237, 231, 217);
     	size:1.5em;
 				   
@@ -15,13 +15,13 @@ body {
 
 .photo {
 	border:2px solid black;
-	width:150px;
+	width:250px;
 	
 	
 }
 
 .initial{
-	font-size:1.5em;
+	font-size:2em;
 }
 
 h2 { 
