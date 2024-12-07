@@ -24,7 +24,7 @@ body {
 	size:1.5em;
 }
 
-h3:hover {
+h2:hover {
     background-color: rgb(213, 160, 33);
     color: white;
     border-color: white;
