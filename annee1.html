@@ -3,35 +3,30 @@
 <head>
   <meta charset="utf-8">
   <title>Inscription</title>
-  <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color: rgb(213, 160, 33);">
-
-</style>
-  
+	<body style="background-color: rgb(213, 160, 33);">
 <center>
 <h3>
 	<br>
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Math.jpg" class="photo">
 <img src="https://www.quebecscience.qc.ca/wp-content/uploads/2019/02/verrerie.jpg" class="photo">
-	
-	<div id ="tout">
-        <div id ="divAffiche1">
-		
-            <input type="button" class="initiale" onclick="creer(['Quel nombre parmis les options sont des nombres premiers','Quel nombre parmis les options sont des nombres carré'],[[7,27,9],[24,16,48,49]],[[0],[1,3]],'divAffiche1','annee1',['select','checkbox'],'math','annee2.html')" value = "Math"> 
-            <input type="button" class="initiale" onclick="creer(['Quel est le plus grand pays du monde en superficie ?','Combien y a-t-il de continents dans le monde ?'],[['La Chine','La russie','Le Canada','Les États-Unis'],[5,6,7,8]],[[1],[2]],'divAffiche1','annee1',['radio','select'],'geo','annee2.html')" value = "Geographie"> 
-  <br> 
-	</div>
-        <div id ="divAffiche2">
+
+    <div id ="tout">
+        <div id ="affiche1">
+            <h1>Question de 1ère année</h1>
+            <input type="button" id="math1" onclick="creer(['Quel nombre parmis les options est un nombre premier','Quel nombre parmis les options sont des nombres carré'],[[7,27,9,33],[24,16,48,49]],[[7],[16,49]],'affiche1','annee1',['select','checkbox'],'math','annee2.html','100',true,[[70,35,55],[35,50]])" value = "Math">
+            <input type="button" id="geo1" onclick="creer(['Quel est le plus grand pays du monde en superficie ?','Combien y a-t-il de continents dans le monde ?'],[['La#Chine','La#Russie','Le#Canada','Les#États-Unis'],[5,6,7,8]],[['La#Russie'],[7]],'affiche1','annee1',['radio','select'],'geo','annee2.html','100',true,[[70,35,55],[35,50]])" value = "Geographie">
+            <input type="button" id="francais1" onclick="creer(['Combien de mot malle écrit ils y a t\'il dans cet phrase?' ,'Quel mot est mal écrit dans cette phrasse ?'],[['3','4','5','6'],['Écrit le mot correctement: ']],[[5],['phrase']],'affiche1','annee1',['radio','text'],'francais','annee2.html','100',true,[[70,35,55],[35,50]])" value = "francais">
+        </div>
+        <div id ="affiche2">
 
         </div>
     </div>
-
-	</h3>
+         </h3>
         <script src="script.js"></script>
 
 </center>
-</body>
+	</body>
 </html>
 
 
