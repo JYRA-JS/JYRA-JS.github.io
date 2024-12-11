@@ -4,21 +4,34 @@
   <head>
     <meta charset="utf-8">
     <title>Annee1</title>
+
+    
+    <!--         Lien vers le document qui définit l'apparence du code -->
     <link rel="stylesheet" href="style.css">
+    
   </head>
-  <body>
-<center>
+ 
+  <!--       Couleur de l'arrière plan -->
+  <body style="background-color:rgb(213, 160, 33);">
+
+    
+    <center>
     <h3>
       <br>
+
+      <!--           Images avant les questions -->
 <img src="https://www.emplois.ca/content/uploads/2018/03/religion-entreprise.jpg" class="photo">
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmVLha4oUitRxOd4X6Dk5Yx5ok4JC9XGYQkg&s" class="photo">
-      
+
+
+      <!--       Code et emplacement des questions (suivant plusieurs fonctions dans le document js)  -->
      <div id ="affiche3">
        <h1>Question de 3ème année</h1>
        <input type="button" id="religion3" onclick="creer(['Quel est l\'établissement religieux principale des catholiques?','Quel nourriture/s/breuvage/s est ce que les musulmans n\'ont pas le droit de manger?'],[[ 'L;école#Paul#Desmarais','L;église','La#Synagogue','L;école','le#Temple'],[ 'Le#poulet','Le#porc','La#grenouille','Le#lait#de#vache','l;alchol']],[['L;église'],['Le#porc','La#grenouille','l;alchol']],'affiche3','annee3',['radio','checkbox'],'religion','annee3.html','200',true,[[60,25,45],[70,100]])" value = "Religion">
        <input type="button" id="astronomie3" onclick="creer(['Quel est la planète la plus proche du soleil ?','Quelle planète est connue pour ses anneaux ?','Quel instrument est utilisé pour observer les étoiles ?'],[['Mars','Vénus','Mercure','La#terre'],['Vénus','Jupiter','Uranus','Saturne','Neptune','Pluton'],['stroboscope',' stratoscope','mégascope','téléscope','microscope']],[['Mercure'],['Saturne'],['téléscope']],'affiche3','annee3',['select','radio','radio'],'astro','annee4.html','200',true,[[60,25,45],[70,100]])" value = "Astronomie">
          </div>
     </h3>
+      <!--           Document js auquel le code se rapporte -->
         <script src="js/script.js"></script>
   </body>
 </html>
