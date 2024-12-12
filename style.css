@@ -67,7 +67,7 @@ h2:hover {
 }
 
 
-#indice {
+.indice {
 	font-family:"verdana", cursive; font-size:40px; color:black; 
 	border:2px solid black;
 	width:600px;
