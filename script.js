@@ -365,6 +365,7 @@ function indice(div) {
     // Créer l'élement si il n'existe pas
     affiche3 = document.createElement("div");
     affiche3.id = "indice";
+      affiche3.classList.add("indice");
       var chanceChanger = localStorage.getItem("chanceChanger");
         var changePoint = localStorage.getItem("changePoint");
         var chanceEnseignant = localStorage.getItem("chanceEnseignant");
