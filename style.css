@@ -77,6 +77,19 @@ h2:hover {
 	
 }
 
+.questionPhoto{
+    text-transform: uppercase;
+    font-family: fantasy;
+    font-weight: 400;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
 
 
 
