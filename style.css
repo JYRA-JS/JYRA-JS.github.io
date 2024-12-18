@@ -1,3 +1,14 @@
+h3 { 
+	font-family:"verdana", cursive; font-size:40px; color:black; 
+	border:2px solid black;
+	width:600px;
+	height:15pk;
+	background-color:rgb(237, 231, 217);
+    	size:1.2em;
+				   
+				   }
+
+
 :root{
   --background-gradient: 
   linear-gradient(30 deg, #75d21e 30%, #343434);
