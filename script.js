@@ -2,7 +2,7 @@ function list(listes,transform){
     /*Cette fonction transform les listes avec des listes comme [[a,d],[b]] en string comme a,d#d pour qu'on puisse les retransformer en liste,
     la variable transforme détermine en quoi on transforme, donc est ce qu'on transforme une liste en une string ou l'inverse*/
     if (transform == 'text'){
-        var liste  = ""
+        var liste  = "" 
         for (i=0;i<listes.length;i++){
             if (i!=listes.length-1){
             liste += listes[i] + "#"
