@@ -72,7 +72,7 @@ function creerexam(leTitre,titres,options,types,reponses,div,nom,id,points,image
   /*On créer l'afficheExam qui va être ce que l'utilisateur va voir*/
   var afficheExam = document.getElementById(div);
   /*La variable exam va contenir tout ce que l'utilisateur va voir en Commencant par le titre de l'examen*/
-  var exam = "<h1 class='examQuestion'>"+leTitre+"</h1>"
+  var exam = "<h2 class='examQuestion'>"+leTitre+"</h2>"
   /*On créer une loop for qui va itérer le nombre de titres qu'il y a, soit le nombre de question qu'il y a dans l'examen*/
   for (i=0;i<titres.length;i++){
     /*En premier le titres, les options, le type, les images sont tous prix à l'index i, donc si c'est la première question on va choisir le premier titres, les premières options etc*/
@@ -87,24 +87,24 @@ function creerexam(leTitre,titres,options,types,reponses,div,nom,id,points,image
          var imageTextCommence = 2
          /*Si il y a plus de 3 éléments dans image sa veut dire qu'il y a aussi une image pour le texte, et elle commence à imageTextCommence et la taille est t'a imageTextCommence+1 si il y n'y a pas plus de 3 éléments donc on ajoute juste pas d'image au texte*/
          if (image.length>3){
-          exam+= "<h1 class='questionPhoto' style=\"background-image:url('"+image[imageTextCommence]+"');font-size:"+image[imageTextCommence+1]+";\">"+titre+"</h1>"
+          exam+= "<h4 class='questionPhoto' style=\"background-image:url('"+image[imageTextCommence]+"');font-size:"+image[imageTextCommence+1]+";\">"+titre+"</h4>"
         } else {
-          exam+= "<h1 class='question'>"+titre+"</h1>"
+          exam+= "<h4 class='question'>"+titre+"</h4>"
         }
         /*Si l'une des conditions du if sont vrai sa veut dire qu'il n'y a pas de heigth, cela est parce que si il y a seulement 2 élément dans image il ne peut que avoir une width et une height et si le troisième élément n'est pas un nombre alors ce n'est pas une heigth*/
-        exam += "<img src='"+image[0]+"' class='photo' width='"+image[1]+"'><br>"
+        exam += "<img src='"+image[0]+"' class='photo' width='"+image[1]+"'>"
       } else {
         /*Si aucune des deux conditions précédente sont vrai alors ont a aussi une hauteur, donc un url, une longeur et une hauteur donc si il y a une image pour le texte alors elle commence à l'index 3*/
          var imageTextCommence = 3
            /*Si il y a de 3 éléments dans image sa veut dire qu'il y a aussi une image pour le texte, et elle commence à imageTextCommence et la taille est t'a imageTextCommence+1 si il y n'y a pas plus de 3 éléments donc on ajoute juste pas d'image au texte*/
          if (image.length>3){
-          exam+= "<h1 class='questionPhoto' style=\"background-image:url('"+image[imageTextCommence]+"');font-size:"+image[imageTextCommence+1]+";\">"+titre+"</h1>"
+          exam+= "<h4 class='questionPhoto' style=\"background-image:url('"+image[imageTextCommence]+"');font-size:"+image[imageTextCommence+1]+";\">"+titre+"</h4>"
         } else {
           /*Si il n'y a pas d'image alors on mais juste le titre, sans image*/ 
-          exam+= "<h1 class='question'>"+titre+"</h1>"
+          exam+= "<h4 class='question'>"+titre+"</h4>"
         }
                 /*Si aucune des conditions du if précédente sont vrai alors on doit aussi ajouter une heigth*/ 
-        exam += "<img src='"+image[0]+"' class='photo' width='"+image[1]+"' height='"+image[2]+"'><br>"
+        exam += "<img src='"+image[0]+"' class='photo' width='"+image[1]+"' height='"+image[2]+"'>"
       }
     }
     /*On ajoute maintenant les select/radio/checkbox */ 
@@ -119,12 +119,12 @@ function creerexam(leTitre,titres,options,types,reponses,div,nom,id,points,image
             /*Je créer le checkbox/radio, avec un attribut name de nom, une valeur de la question, et un type du type soit checkbox ou radio, je leur donne aussi une classe soit leur type, donc encore checkbox ou radio*/ 
         exam += "<input type='"+type+"' name='"+nom[i]+"' value='"+option[j]+"' id='"+option[j]+"' class = '"+type+"'>"
         if (type =='checkbox'){
-             /*SI c'est une checkbox on créer un label avec une clas de checkbox-label qui va être styler dans le css */ 
-        exam += "<label for='"+option[j]+"' class ='checkbox-label' >"+option[j]+"</label>"
-        //On créer une nouvelle ligne a chaque 2 options possible, pour les checkbox seulements.
-        if (j%2!==0){
-          exam +="<br>"
-        }
+             /*Si c'est une checkbox on créer un label avec une clas de checkbox-label qui va être styler dans le css */ 
+          exam += "<label for='"+option[j]+"' class ='checkbox-label' >"+option[j]+"</label>"
+          //On créer une nouvelle ligne a chaque options possible, pour les checkbox seulements a part la derniere.
+          if (i!=option.length-1){
+            exam +="<br>"
+          }
         } else {
           /*Si ce n'est pas un checkbox, alors c'est un radio, donc on lui donne une classe de radio-label*/ 
         exam += "<label for='"+option[j]+"' class ='radio-label' >"+option[j]+"</label>" 
@@ -133,7 +133,7 @@ function creerexam(leTitre,titres,options,types,reponses,div,nom,id,points,image
               exam +="</div><br><br>"
             }
         }
-        } else if ((type =='select')){
+        } else if (type =='select'){
             /*Si c'est un select alors il faut d'abord commencer par créer un select avec son id et une option vide*/ 
             if (j === 0){
                 exam += "<div class='select'><select id='"+id[i]+"' class = 'select-box'>"+"<option></option>"
@@ -148,11 +148,11 @@ function creerexam(leTitre,titres,options,types,reponses,div,nom,id,points,image
       }  
       /*Si le type de question est un text alors on doit lui donner un label et le texte du label est choisi par moi et correspond a la option[0] puisque cette variable n'est pas nécessaire si le type de question est un texte j'ai décidé de l'utiliser pour déterminer quel serait le label de la question*/ 
     } else if (type =='text'){
-        exam += '<label for="'+id[i]+'">'+option[0]+'</label>'
-        exam +='<input type="text" id="'+id[i]+'" name="'+nom[i]+'" class = "'+type+'">'
+        exam += '<div class="envellopeur"><div class="information"><input type="text" id="'+id[i]+'" name="'+nom[i]+'" class = "'+type+'" required>'
+        exam +='<label for="'+id[i]+'" class="ligne-information">'+option[0]+'</label></div></div>'
   
     }
-     
+       
   }
         /*La variable réponse est une liste de se genre [[a,d],[b]] contrairement au autre liste des types, des points des noms etc, ce n'est pas qu'une liste
         , ce sont des liste dans une liste, donc ont doit la décomposé en une string que l'ordinateur peut reconstruire en liste, par exemple [[a,d],[b]], deviendra
@@ -165,14 +165,26 @@ function creerexam(leTitre,titres,options,types,reponses,div,nom,id,points,image
 
 }
 function soumisExam(reponses,noms,div,ids,types,points,site){
-   /*Je définis*/ 
+   /*Je définis la variable lesBonneRep et lesMauvaiseRep,
+   ils vont représenter le montant total de bonne réponses
+   et de mauvaise réponses que l'utilisateur a eu*/ 
   var lesBonneRep = 0;
   var lesMauvaiseRep = 0;
+  /*Je définis la variable message qui va être le message que l'utilisateur
+  va voir, qui leur dit leur bonne réponses, mauvaise réponses, score pour l'examen, score
+  pour tout les examens et score pour tout les test/examens*/ 
   var message = ""
+  /*Je définis la variable totalPointCetExam, qui est le nombre de points
+  total pour cet exame et totalPointTrouverCetExam qui est le nombre de points
+  total que l'utilisateur a pour cette exam*/ 
   var totalPointCetExam = 0;
   var totalPointTrouverCetExam = 0;
-  reponsestest = reponses
+    /*Je retransforme les réponses qui ont été transformé en string comme
+    a,d#b en leur liste initial donc [[a,d],[b]] dans cette exemple*/ 
   reponses = list(reponses,"liste")
+  /*Je fais de même pour toutes les autres variable sauf que il ne sont
+  qu'une seul listes et non des liste dans une liste donc je peux juste
+  utiliser .split()*/ 
   noms = noms.split(",");
   ids = ids.split(",");
   types = types.split(",")
@@ -184,32 +196,40 @@ function soumisExam(reponses,noms,div,ids,types,points,site){
 
     /*Je change créer une variable affiche2 qui sera le message que l'utilisateur va voir quand il va cliquer sur soumettre*/
   var affiche2 = document.getElementById(div);
-      /*Si le type de question est une checkbox/radio je dois la retrouver avec leur nom mais si c'est un select ou un texto je dois la retrouver avec leur id*/
+      /*Je créer une for loop qui va itérer le nombre de réponses qu'il y a*/
     for (k=0;k<reponses.length;k++){
+      /*bonneRep et mauvaiseRep sont le nombre de bonne réponses
+      a eu pour une question et le nombre de mauvaise réponses 
+      quelle*/
       var bonneRep = 0;
       var mauvaiseRep = 0;
-      /*la variable points est égales à parseInt de points, juste au cas ou points soit une string et non un integer*/
+      /*La variable point est égale au points à la question qu'on est, donc si points = [100,200] et on est a la question a l'index 1 donc la question vaudra 200 points */
       point = points[k]
       point = parseInt(point)
+      /*On définis le type, la réponses, le noms et les id à k, donc a quelle question on est*/
       var type = types[k]
       var reponse = reponses[k]
       var nom = noms[k]
       var id = ids[k]
+      /*Si le type de question est un checkbox on retrouve la question
+      avec son nom, sinon on la retouve avec son id et sa valeur*/
       if ((type =="checkbox") || (type =="radio")){     
         var question = document.getElementsByName(nom);
       } else if ((type =="select") ||(type =="text")){
         var question = document.getElementById(id).value
       } 
-      /*Si le type de question est un checkbox ou un radio je dois aller voir toute les réponses et si ce que l'utilisateur à cliquer est une bonne réponses car la valeur des réponses pour les select et les text et la vrai valeur de la réponse et non un l'index de la réponse*/
-    if ((type =="checkbox") ||(type =="radio")){  
+      /*Si le type de question est un checkbox ou un radio je dois aller voir toute les radio/checkbox avec le nom pour voir si il sont cochés*/
+    if ((type =="checkbox") || (type =="radio")){  
      for (i=0;i<question.length;i++){
         /*Je définis la variable essayé à zéro, elle sera celle qui vois si l'utilisateur à cliquer sur une réponses qui ne correspond à aucune des réponses*/
         var essaye = 0
         if (question[i].checked){  
           /*Le reste du code se passe seulement si l'utilisateurs à cliquer*/
           for (j=0;j<reponse.length;j++){
-            /*Si l'utilisateurs à cliquer, et l'index de la réponses qu'il/elle à cliquer est le même que l'index des réponses, on ajoute 1 à essayé et 1 à bonne réponses*/
-            if ((question[i].value==reponse[j]) ||(i==reponse[j])){
+            /*Si l'utilisateurs à cliquer, et l'index de la réponses qu'il/elle à cliquer
+            est le même que l'index des réponses ou la réponses de l'utilisateur en mot est
+            la même que la réponses,on ajoute 1 à essayé et 1 à bonne réponses*/
+            if ((i==reponse[j]) || (question[i].value==reponse[j])){
               essaye++
               bonneRep++
             }
@@ -221,30 +241,50 @@ function soumisExam(reponses,noms,div,ids,types,points,site){
         }               
     }
   } else if (type =="select"){
-        /*Si le type de questions est un select, ou un texte cela veut dire qu'il y a une seule bonne réponse et aussi que la variable réponses est égale au nom de la réponses, par exemple si la bonne réponses est 7, réponses va être égale à 7 et non à l'index de la réponse 7 donc on peut juste vérifier si leur réponses est égales à la réponses, si ça l'est alors il on une bonneRep et 0 mauvaiseRep et si ça ne l'est pas il on 0 bonneRep et 1 mauvaiseRep*/
+        /*Si le type de questions est un select,cela veut dire qu'il y a une seule bonne réponse
+        et aussi que la variable réponses est égale à l'index de la réponse, par exemple si la
+        bonne réponses est 7 et les options sont [8,1,7], la réponses va être égale à 2 et non
+        la réponse 7 donc on peut juste vérifier si leur réponses est égales à la réponses, si 
+        ça l'est alors il on une bonneRep et 0 mauvaiseRep et si ça ne l'est pas il on 0 bonneRep et 1 mauvaiseRep*/
     if (question == reponse){
         bonneRep++
     } else {
         mauvaiseRep++
     }    
   } else {
-    var essaye = 0
-    for (i=0;i<reponse.length;i++){
-      if (reponse[i]==question){
+    /*Si le type de questions est un texte alors on 
+    doit juste regarder si la réponses de l'utilisateur == réponses,
+    si c'est le cas on leur donne 1 bonne réponses et si il n'ont
+    aucune bonne réponses donc on leur donne une mauvaise réponses*/
+      if ((reponse==question) || (reponse==question.toLowerCase())){
         bonneRep++
       }
-    }
       if (bonneRep==0){
        mauvaiseRep++
       }
     }
+     /*on ajoute le nombre de bonne réponses au nombre de bonne réponses 
+     total et on fait de même pour les mauvaise réponses*/
    lesBonneRep += bonneRep;
    lesMauvaiseRep += mauvaiseRep;
+   /*Le nombre de points trouver est égale au nombre de 
+   ((bonneRep-mauvaiseRep)/reponse.length)*point de sorte
+   à ce qui si l'utilisateur à 2 bonne réponse sur 2 et
+   une mauvaise réponse et le nombre de point est 100
+   le score sera ((2-1)/2)*100 donc l'utilisateur aura 50 point
+   */
     var pointTrouver = ((bonneRep-mauvaiseRep)/reponse.length)*point
+  
+    /*Si le nombre de pointTrouver est moins que 0 alors on le met a 0*/
     if (pointTrouver<0){
       pointTrouver = 0
     }
+    /*le nombre de point pour cette question est le nombre de
+    pointTrouver/point*100*/
    pourcentageExam = propre((pointTrouver/point)*100)
+   /*Pour rendre le texte avec les réponses plus grammaticallement
+   correcte si l'utilisateur a plus de 1 mauvaiseRep on ajoute
+   un s et sinon on n'en ajoute pas, de même pour les bonneRep*/
    if (mauvaiseRep>1){
      phraseMauvaseRep = "mauvaises réponses.";
    } else {
@@ -256,54 +296,83 @@ function soumisExam(reponses,noms,div,ids,types,points,site){
      phraseBonneRep = "bonnes réponse ";
    }
       message += "Pour la question "+(k+1)+ " Tu as eu " + bonneRep + " / " + reponse.length +" "+phraseBonneRep+ "et tu as eu " + mauvaiseRep +" "+ phraseMauvaseRep +"<br>Tu as recu "+pointTrouver+" points et tu as eu une note de "+pourcentageExam+"%<br>";
-   /*On ajoute le nombre de points trouver à la variable score, donc combien de points l'utilisateur à eu pour cette questions*/
+  /*On ajoute le nombre de point au total dans trois variable, sois les points pour l'examen
+   , les points pour tout les examens et les points pour tout les test/examen, on utilise la fonction
+   propre pour enlever les nombres décimal inutile*/
     totalPointExam = parseInt(localStorage.getItem('totalexam')) + point;
     totalPoint = parseInt(localStorage.getItem('total')) + point;
     totalPointCetExam += point;
     totalPointExam = propre(totalPointExam)
     totalPoint = propre(totalPoint)
     totalPointCetExam = propre(totalPointCetExam);
-     /*On ajoute le nombre de points total à maxscore*/
+     /*On ajoute le nombre de pointTrouver au trois variable
+     sois les point trouver pour tout les examen, les points trouver pour tout
+     et les pointTrouver pour cet examen, on utilise la fonction propre
+     pour enlever les nombres décimal inutile*/
     totalPointTrouverExam = parseInt(localStorage.getItem('examscore')) + pointTrouver;
     totalPointTrouver = parseInt(localStorage.getItem('score')) + pointTrouver;
     totalPointTrouverCetExam += pointTrouver
     totalPointTrouverExam = propre(totalPointTrouverExam)
     totalPointTrouver = propre(totalPointTrouver)
     totalPointTrouverCetExam = propre(totalPointTrouverCetExam)
-     /*On mets la variable utilisateurScore et maxScore dans le localStorage pour qu'elle se rappelle du score quand on change de page*/
+     /*On mets les variables de tout les points pour l'examen et tout le test
+     et aussi les variable pour tout le test dans le localStorage pour qu'elle
+     se rappelle du score quand on change de page et aussi pour pouvoir les réutiliser
+     pour la prochaine question, si il y en a une.*/
      localStorage.setItem('totalexam', totalPointExam);
      localStorage.setItem('total', totalPoint);
     localStorage.setItem('examscore', totalPointTrouverExam);
     localStorage.setItem('score', totalPointTrouver);
   }
+  /*On définit les variable pour tout les pourcentage*/
   var pourcentageTotalExam = propre((totalPointTrouverExam/totalPointExam)*100)
   var pourcentageTotal = propre((totalPointTrouver/totalPoint)*100)
   var pourcentageTotalCetExam = propre((totalPointTrouverCetExam/totalPointCetExam)*100)
-   message += "Pour l'examen global tu as recu: "+lesBonneRep +" bonne réponse et "+ lesMauvaiseRep+" mauvaise réponse et " +totalPointTrouverCetExam+"/"+totalPointCetExam+" points pour une moyenne de: "+pourcentageTotalCetExam+"%";
-   if (site!="exam2.html"){
-        message += "<br>Pour ton résultat global pour tout les examens tu as recu " +totalPointTrouverExam+"/"+totalPointExam+" points pour une moyenne de: "+pourcentageTotalExam+"% sur les examens";
+  /*On dit as l'utilisateur leur score pour tout l'examen, on leur
+  dit leur score pour tout les examens si la page n'est pas == exam2.html
+  car sinon sa veut dire que c'est leur première exam*/
+   message += "Pour l'examen global tu as recu: "+lesBonneRep +" bonne réponse et "+lesMauvaiseRep+" mauvaise réponse et " +totalPointTrouverCetExam+"/"+totalPointCetExam+" points pour une moyenne de: "+pourcentageTotalCetExam+"%";
+  if (site!="exam2.html"){
+    message += "<br>Pour ton résultat global pour tout les examens tu as recu "+totalPointTrouverExam+"/"+totalPointExam+" points pour une moyenne de: "+pourcentageTotalExam+"%";
   }
-   message += "<br>Finalement, ta moyenne pour tout les test précedent et cette examen est de: "+pourcentageTotal+"%"
-   message += "<br><button type = 'button' value = 'Page Suivante' class ='suivante'><a href='"+site+"'>Page Suivante</a></button>"
+   message += "<br>Finalement, ton score pour tout les test/examens précédents incluant celui ci est de: " +totalPointTrouver+"/"+totalPoint+ " points et ta moyenne pour tout est de "+pourcentageTotal+"%";
+   /*On ajoute le bouton pour la prochaine page*/
+   if (site!="index.html"){
+   message += "<br><button type = 'button' value = 'Page Suivante' class ='bouton'><a href='"+site+"'><span></span><span></span><span></span><span></span>Page Suivante</a></button>"
+   } else{
+        message += "<br><button type = 'button' value = 'Page Suivante' class ='bouton'><a href='"+site+"'><span></span><span></span><span></span><span></span>Retourner</a></button>"
+   }
+   /*On affiche le messsage*/
   affiche2.innerHTML = message;
+}
+function fin(div){
+  afficher = document.getElementById(div);
+  afficher.innerHtml = "allo";
 }
 function creer(titres,questions,reponses,div,nom,types,id,site,points,tricher,chancePoints,images){
     //Cette fonction créer un questionnaire avec les paramètres données, comme le titres, les questions, les réponses, le type de questions, etc
-      /*Pour ce faire on créer premièrement la variable chance qui est un nombre aléatoire entre 0-100, ce nombre va déterminer la chance que la personne a eu et ce qu'il/elle va pouvoir faire, par exemple, disons qu'il/elle a obtenu 20 sur 100, ça veut dire que si il utilise un indice, ça marchera seulement si l'indice qu'il demander se passe 80% (100-20)% du temps ou plus souvent.*/
+      /*Pour ce faire on créer premièrement la variable chance qui est un nombre aléatoire
+      entre 0-100, ce nombre va déterminer la chance que la personne a eu et ce qu'il/elle 
+      va pouvoir faire, par exemple, disons qu'il/elle a obtenu 20 sur 100, ça veut dire que
+      si il utilise un indice, ça marchera seulement si l'indice qu'il demander se passe 80%
+      (100-20)% du temps ou plus souvent.*/
     var chance = aleatoire(100)
     var chanceChanger = 100-chancePoints[0][0]
     var pointChanger = chancePoints[1][0]
     var chanceEnseignant = 100-chancePoints[0][1]
     var chanceEleve = 100-chancePoints[0][2]
     var pointEleve = chancePoints[1][1]
-    /*Je créer un variable pour tous les montants de chance que la personne a besoin pour avoir leur indice et créer aussi une variable pour tous les points qu'il perdront s' il ont leur indice.*/
+    /*Je créer un variable pour tous les montants de chance que la personne a besoin pour avoir
+    leur indice et créer aussi une variable pour tous les points qu'il perdront s'il ont leur indice.*/
 localStorage.setItem("chanceChanger",chanceChanger)
     localStorage.setItem("changePoint",pointChanger)
     localStorage.setItem("chanceEnseignant",chanceEnseignant)
     localStorage.setItem("chanceEleve",chanceEleve)
     localStorage.setItem("pointEleve",pointEleve)
-    /*Je stocke ensuite toutes les variables mentionnées précédemment grâce à la fonction localStorage, pour que d'autre fonction puisse les utiliser.*/
-    /*Je choisis ensuite un nombre aléatoire avec un étendu qui est le nombre de questions qu'il y a, si il y a 2 questions ça sera soit 0 ou 1 donc la question à l'index 0 et la question à l'index 1.*/
+    /*Je stocke ensuite toutes les variables mentionnées précédemment grâce à la fonction localStorage
+    , pour que d'autre fonction puisse les utiliser.*/
+    /*Je choisis ensuite un nombre aléatoire avec un étendu qui est le nombre de questions qu'il y a,
+    si il y a 2 questions ça sera soit 0 ou 1 donc la question à l'index 0 et la question à l'index 1.*/
   var questionChoisi = aleatoire(questions.length)
         
     /*Maintenant que nous savons la question choisi, toutes les autres variables comme le titre, l'image, les options de réponses etc sont détermiers par l'index de la questionChoisi*/ 
@@ -317,25 +386,33 @@ localStorage.setItem("chanceChanger",chanceChanger)
     /*J'ajoute le l'image à tout, qui sera la variable qui va contenir tout ce que l'utilisateur va voir, soit le titre, les options de réponses, le boutons soumettre, l'image etc.*/ 
     /*l'ajout de l'image va être assez complexe car je veux pouvoirs décider si j'ajouterais une image, ou une image et un titre avec une image en arrière, je commence par vérifier si l'image à une longueur de 2 ou si l'élément à l'index 2 n'est pas un nombre si l'une de ces conditions est vrai alors j'ai seulement besoin de dire la width et la variable imageTextCommence qui définit quand est ce que la prochaine image qui sera pour le texte à une valeur de 2 car si elle existe elle sera après l'url de l'image donc après image à l'index 0, et après la width donc index 1, donc elle sera à 2*/ 
     if ((image.length==2) || (isNaN(image[2])==true)){
-    var tout = "<img src='"+image[0]+"' class='photo' width='"+image[1]+"'><br>"
+    var tout = "<img src='"+image[0]+"' class='photo' width='"+image[1]+"'>"
        var imageTextCommence = 2
     } else {
         /*Si aucunes des deux conditions n'est vrai ça veut dire  que l'image à une width et une height, la variable imageTextCommence détermine l'index à laquel la prochaine image va commencer, si il y à l'url de l'image, le width et le height ça veut dire que l'index de la prochaine image pour le texte, si elle existe est de 3*/ 
-        var tout = "<img src='"+image[0]+"' class='photo' width='"+image[1]+"' height='"+image[2]+"'><br>"
+        var tout = "<img src='"+image[0]+"' class='photo' width='"+image[1]+"' height='"+image[2]+"'>"
        var imageTextCommence = 3
     }
     /*Si l'image à une longueur de plus de 3 alors il y a aussi une image pour le texte à ajouter, cela est fait avec la variable imageTextCommence qui détermine quand l'image du texte commence, si par exemple imageTextCommence = 2, l'url de l'image est à l'index 2 et la mesure en px, em etc est à l'index de imageTextCommence+1 */ 
     if (image.length>3){
-        tout+= "<h1 class='questionPhoto' style=\"background-image:url('"+image[imageTextCommence]+"');font-size:"+image[imageTextCommence+1]+";\">"+titre+"</h1>"
+        tout+= "<h4 class='questionPhoto' style=\"background-image:url('"+image[imageTextCommence]+"');font-size:"+image[imageTextCommence+1]+";\">"+titre+"</h4>"
     } else {
         /*Si il n'y a pas d'image alors on mais juste le titre, sans image*/ 
-        tout+= "<h1 class='question'>"+titre+"</h1>"
+        tout+= "<h4 class='question'>"+titre+"</h4>"
     }
     /*Si le type de question est une checkbox, un radio ou un select, il faut y avoir un radio/select/checkbox par réponse possible*/ 
   if ((type =='checkbox') ||(type =='radio') ||(type =='select')){
       /*je créer un radio/select/checkbox par réponse possible*/ 
     for (i=0;i<question.length;i++){
-      /*Parce ce que les espaces et les apostrophe cause un problème j'ai créé une fonction appelée espace qui enlèves les hashtag et point-virgules et les remplaces par des espaces et des apostrophe, aucune des réponse possible ne contiennent des espaces ou des apostrophe, je mets des hashtag pour des espaces et des points virgules pour des apostrophes, la variable montreQuestion transforme les # et les ; en leur valeur respective pour que l'utilisateur voit un espace ou une apostrophe*/ 
+      /*Parce ce que les espaces et les apostrophe cause un problème
+      j'ai créé une fonction appelée espace qui enlèves les hashtag et
+      point-virgules et les remplaces par des espaces et des apostrophe,
+      aucune des réponse possible ne contiennent des espaces ou des apostrophes,
+      je mets des hashtag pour des espaces et des points virgules pour des
+      apostrophes, la variable montreQuestion transforme les # et les ; en
+      leur valeur respective pour que l'utilisateur voit un espace ou une apostrophe,
+      mais que la vrai valeur de l'option choisi soit celle avec des # et des ;
+      et de même pour la réponses*/ 
       var montreQuestion = espace(question[i],'#'," ");
        montreQuestion = espace(montreQuestion,';',"'");
       if ((type =='checkbox') ||(type =='radio')){
@@ -343,19 +420,23 @@ localStorage.setItem("chanceChanger",chanceChanger)
           /*je créer un div pour les radio, pour les styler*/ 
              tout+="<div class = 'contenir-radio'>"
         }
-          /*Je créer le checkbox/radio, avec un attribut name de nom, une valeur de la question, et un type du type soit checkbox ou radio, je leur donne aussi une classe soit leur type, donc encore checkbox ou radio*/ 
+          /*Je créer le checkbox/radio, avec un attribut name de nom, une valeur de la question,
+          et un type du type soit checkbox ou radio, je leur donne aussi une classe soit leur type,
+          donc encore checkbox ou radio*/ 
       tout += "<input type='"+type+"' name='"+nom+"' value='"+question[i]+"' id='"+question[i]+"' class = '"+type+"'>"
       if (type =='checkbox'){
-      tout+= "<label for='"+question[i]+"' class ='checkbox-label' >"+montreQuestion+"</label>"
-      //On créer une nouvelle ligne a chaque 2 options possible, pour les checkbox seulements.
-      if (i%2!==0){
-        tout+="<br>"
-      }
+        tout+= "<label for='"+question[i]+"' class ='checkbox-label' >"+montreQuestion+"</label>"
+        //On créer une nouvelle ligne a chaque 2 options possible, pour les checkbox seulements.
+        if (i%2!==0){
+          tout+="<br>"
+        }
       } else {
-      tout+= "<label for='"+question[i]+"' class ='radio-label' >"+montreQuestion+"</label>" 
+        /*Je créer un label avec une class de radio-label si le type
+        de question est un radio pour pouvoir les styler dans css*/ 
+        tout+= "<label for='"+question[i]+"' class ='radio-label' >"+montreQuestion+"</label>" 
+        /*Si c'est la dernière option alors on doit fermer le div */ 
         if (i==question.length-1){
-            tout+="</div><br><br>"
-            
+            tout+="</div>"
           }
       }
       } else if ((type =='select')){
@@ -363,7 +444,7 @@ localStorage.setItem("chanceChanger",chanceChanger)
           if (i === 0){
               tout += "<div class='select'><select id='"+id+"' class = 'select-box'>"+"<option></option>"
           }
-          /*Le select doit avoir une valeur de question[i] donc l'option de réponses à l'index qu'on est donc 0,1,2 etc*/ 
+          /*Le select doit avoir une valeur de question[i] donc l'option de réponses*/ 
           tout+=" <option value='"+question[i]+"' class = '"+type+"'>"+montreQuestion+"</option>"
            /*Si c'est la dernière réponse possible alors on doit fermer le select*/ 
           if (i == question.length-1){
@@ -371,24 +452,35 @@ localStorage.setItem("chanceChanger",chanceChanger)
           }
       }
   }
-      /*Si le type de question est un text alors on doit lui donner un label et le texte du label est choisi par moi et correspond a la question[0] puisque cette variable n'est pas nécessaire si le type de question est un texte j'ai décidé de l'utiliser pour déterminer quel serait le label de la question*/ 
+      /*Si le type de question est un text alors on doit lui donner un label et le
+      texte du label est choisi par moi et correspond a la question[0] puisque cette 
+      variable n'est pas nécessaire si le type de question est un texte j'ai décidé 
+      de l'utiliser pour déterminer quel serait le label de la question*/ 
   } else if (type =='text'){
-      tout += '<label for="'+id+'">'+question[0]+'</label>'
-      tout +='<input type="text" id="'+id+'" name="'+nom+'" class = "'+type+'">'
+      tout += '<div class="envellopeur"><div class="information"><input type="text" id="'+id+'" name="'+nom+'" class = "'+type+'" required>'
+      tout +='<label for="'+id+'" class="ligne-information">'+question[0]+'</label></div></div>'
 
   }
-    /*La variable toutEleve est égale à tout les images/titres/question/réponses etc que je viens de créer, sauf le bouton soumis car le boutons soumis prend aussi un autre paramètre qui est le nombre de points que l'utilisateur à perdu, il est à zéro si l'utilisateur n'utilise aucun indice et à une variable, soit point Changer, si l'utilisateur change de questions et à pointEleve si l'utilisateur demande à un élève*/ 
+    /*La variable toutEleve est égale à tout les images/titres/question/réponses
+    etc que je viens de créer, sauf le bouton soumis car le boutons soumis prend 
+    aussi un autre paramètre qui est le nombre de points que l'utilisateur à perdu,
+    il est à zéro si l'utilisateur n'utilise aucun indice et à une variable,
+    soit point Changer, si l'utilisateur change de questions et à pointEleve 
+    si l'utilisateur demande à un élève*/ 
     var toutEleve = tout
-    /*Je créer un bouton qui accomplis la fonction soumis quand il est cliqué et cette fonction regarde à la réponse et dit à l'utilisateur si il/elle à la bonne réponse*/ 
+    /*Je créer un bouton qui accomplis la fonction soumis quand il est cliqué
+    et cette fonction regarde à la réponse et dit à l'utilisateur si il/elle 
+    à la bonne réponse*/ 
    tout+="<br><button type ='button' value = 'Soumettre' class ='bouton' onclick=soumis('"+reponse+"','"+nom+"','"+div+"','"+id+"','"+type+"','"+site+"','"+points+"',0,'"+image+"');><span></span><span></span><span></span><span></span>Soumettre</button>"
     var toutnon = tout
     var toutEnseignant = tout
     if (tricher==true){
         /*Je créer un bouton indice seulement si l'utilisateur à le droit a des indices/trichers*/ 
         tout += "<br><button type = 'button' value = 'Indice' class ='bouton' onclick=indice('"+div+"'); ><span></span><span></span><span></span><span></span>Indice</button>"
-        tout += "<p class = 'textIndice' display ='inline'>Appui sur indice pour voir tout les indices possibles que tu peux avoir</p>"
+        tout += "<p class ='texte' display ='inline'>Appui sur indice pour voir tout les indices possibles que tu peux avoir, et ensuite descent en bas avec la barre de défilement pour les voirs</p>"
     }
-    /*toutReponse sera toute une variables qui va stocker toute les réponses pour les données si la personnes est chanceuse*/ 
+    /*toutReponse sera toute une variables qui va stocker toute les réponses 
+    pour les données si la personnes utilise un indice et est chanceuse*/ 
     var toutReponse = ""
     if (type=='text'){
       var conjonction = "ou"
@@ -426,16 +518,16 @@ localStorage.setItem("chanceChanger",chanceChanger)
     }
     /*Si la chance que l'utilisateur puisse demander à leur enseignant définis par moi au début est 100-la chance définis par moi donc disons, 100-20 soit 80, si cette chance est plus petit que la chance choisis aléatoirement au début donc disons 81, si c'est le cas on montrera toutes les réponses, sinon, on montre quelque chose d'autre*/
     if (chanceEnseignant<chance){
-            toutEnseignant += "<br>"+toutReponse
+            toutEnseignant += "<br><p class='texte'>"+toutReponse+"</p>"
     } else {
         /*L'autre message choisi est un nombre entre 0-3, excluant 3, donc 0-2, si le nombre est 0 j'envoie un message que l'enseignant ne va pas répondres à ta question, si c'est 1 j'envoie un autre message, si c'est 2 j'envoie un autre message cela rends le message plus aléatoire et moins statique*/
         aucuneChanceEnseignant = aleatoire(3)
         if (aucuneChanceEnseignant==0){
-            aucuneChanceEnseignant = "<br>Tu le saurais si tu avais étudié"
+            aucuneChanceEnseignant = "<br><p class='texte'>Tu le saurais si tu avais étudié</p>"
         } else if (aucuneChanceEnseignant==1){
-            aucuneChanceEnseignant = "<br>Je ne peux pas de dire la/les réponse/s"
+            aucuneChanceEnseignant = "<br><p class='texte'>Je ne peux pas de dire la/les réponse/s</p>"
         } else {
-            aucuneChanceEnseignant = "<br>C'est un test, je ne peux pas répondre à cette question pour toi"
+            aucuneChanceEnseignant = "<br><p class='texte'>C'est un test, je ne peux pas répondre à cette question pour toi</p>"
         }
         toutEnseignant += aucuneChanceEnseignant
     }
@@ -474,19 +566,19 @@ localStorage.setItem("chanceChanger",chanceChanger)
       /*J'ajoute le l'image à tout, qui sera la variable qui va contenir tout ce que l'utilisateur va voir, soit le titre, les options de réponses, le boutons soumettre, l'image etc.*/ 
       /*l'ajout de l'image va être assez complexe car Je veux pouvoirs décider si j'ajouterais une image, ou une image et un titre avec une image en arrière, je commence par vérifier si l'image à une longueur de 2 ou si l'élément à l'index 2 n'est pas un nombre si l'une de ces conditions est vrai alors j'ai seulement besoin de dire la width et la variable imageTextCommence qui définit quand est ce que la prochaine image qui sera pour le texte à un valeur de 2 car si elle existe elle sera après l'url de l'image donc 0, et après la width donc 1, donc elle sera à 2*/ 
       if ((image2.length==2) || (isNaN(image2[2])==true)){
-      var tout2 = "<img src='"+image2[0]+"' class='photo' width='"+image2[1]+"'><br>"
+      var tout2 = "<img src='"+image2[0]+"' class='photo' width='"+image2[1]+"'>"
        var imageTextCommence2 = 2
         } else {
           /*Si aucunes des deux conditions n'est vrai ça veut dire  que l'image à une width et une height, la variable imageTextCommence détermine l'index à laquel la prochaine image va commencer, si il y à l'url de l'image, le width et le height ça veut dire que l'index de la prochaine image pour le texte, si elle existe est de 3*/ 
-          var tout2 = "<img src='"+image2[0]+"' class='photo' width='"+image2[1]+"'  height='"+image[2]+"'><br>"
+          var tout2 = "<img src='"+image2[0]+"' class='photo' width='"+image2[1]+"'  height='"+image[2]+"'>"
           var imageTextCommence2 = 3
         }
         /*Si l'image à une longueur de plus de 3 alors il y a aussi une image pour le texte à ajouter, cela est fait avec la variable imageTextCommence qui détermine quand l'image du texte commence, si par exemple imageTextCommence = 2, l'url de l'image est à l'index 2 et la mesure en px, em etc est à l'index de imageTextCommence+1 */ 
         if (image2.length>3){
-            tout2+= "<h1 class='questionPhoto' style=\"background-image:url('"+image2[imageTextCommence2]+"');font-size:"+image2[imageTextCommence2+1]+";\">"+titre2+"</h1>"
+            tout2+= "<h4 class='questionPhoto' style=\"background-image:url('"+image2[imageTextCommence2]+"');font-size:"+image2[imageTextCommence2+1]+";\">"+titre2+"</h4>"
         } else {
             /*Si il n'y a pas d'image alors on mais juste le texte*/ 
-            tout2+= "<h1 class='question'>"+titre2+"</h1>"
+            tout2+= "<h4 class='question'>"+titre2+"</h4>"
         }
           if ((type2 =='checkbox') ||(type2 =='radio') ||(type2 =='select')){
       /*je créer un radio/select/checkbox par réponse possible*/ 
@@ -509,7 +601,7 @@ localStorage.setItem("chanceChanger",chanceChanger)
       } else {
       tout2+= "<label for='"+question2[i]+"' class ='radio-label' >"+montreQuestion2+"</label>" 
         if (i==question2.length-1){
-            tout2+="</div><br><br>"
+            tout2+="</div>"
             
           }
       }
@@ -528,8 +620,8 @@ localStorage.setItem("chanceChanger",chanceChanger)
   }
       /*Si le type de question est un text alors on doit lui donner un label et le texte du label est choisi par moi et correspond a la question[0] puisque cette variable n'est pas nécessaire si le type de question est un texte j'ai décidé de l'utiliser pour déterminer quel serait le label de la question*/ 
   } else if (type2 =='text'){
-          tout2 += '<label for="'+id+'">'+question2[0]+'</label>'
-          tout2 +='<input type="text" id="'+id+'" name="'+nom+'" class = "'+type2+'">'
+          tout2 += '<div class="envellopeur"><div class="information"><input type="text" id="'+id+'" name="'+nom+'" class = "'+type2+'" required>'
+          tout2 +='<label for="'+id+'" class="ligne-information">'+question2[0]+'</label></div></div>'
         }
         /*Je créer le bouton soumis mais cette fois ci il aura la valeur de pointChanger donc l'utilisateur perdra un certain nombre de points*/ 
         tout2 +=  "<br><button type ='button' value = 'Soumettre' class ='bouton' onclick=soumis('"+reponse2+"','"+nom+"','"+div+"','"+id+"','"+type2+"','"+site+"','"+points+"','"+pointChanger+"','"+image2+"');><span></span><span></span><span></span><span></span>Soumettre</button>"
@@ -614,7 +706,7 @@ if (type!="text"){
      pointTrouver = 0
      pointTrouverTricher = 0
  }
-if (site=="exam.html"){
+if (site=="annee2.html"){
     localStorage.clear()
     /*Si le site sur lequel on va aller quand l'utilisateur clique sur page suivante est annee2.html cela veut dire que c'est la première question donc on doit mettre la variable score à zéro et de même pour la variable total*/
     localStorage.setItem('score', 0);
@@ -638,11 +730,13 @@ if (site=="exam.html"){
     var message =  "<img src='"+image[0]+"' class='photo' width='"+image[1]+"'><br>"
  message +=  "Vous avez "+bonneRep+"/"+bonneRepTotal+" bonne réponse et "+mauvaiseRep+" mauvaise réponse"
     if (pointTrouver==pointTrouverTricher){
- message+= "<br>Tu as recu " + pointTrouver+" points. Tu as maintenant "+ utilisateurScore + "/" + maxScore + "point. Tu as une moyennes de " + pourcentage + "%";
+ message+= "<br>Tu as recu " + pointTrouver+" points. Tu as maintenant "+ propre(utilisateurScore) + "/" + maxScore + "point. Tu as une moyennes de " + pourcentage + "%";
     } else {
-        message+= "<br>Tu as recu " + pointTrouver +" mais tu a perdu " +indicePoints+" points, parce ce que tu as utilisé un indice.Tu as donc recu  "+pointTrouverTricher+" point et ton score est de "+ utilisateurScore + "/" + maxScore + "point. Tu as une moyenne de " + pourcentage + "%";
+        message+= "<br>Tu as recu " + pointTrouver +" mais tu a perdu " +indicePoints+" points, parce ce que tu as utilisé un indice.Tu as donc recu  "+pointTrouverTricher+" point et ton score est de "+ propre(utilisateurScore) + "/" + maxScore + "point. Tu as une moyenne de " + pourcentage + "%";
     }
-   message+= "<br><button type = 'button' value = 'Page Suivante' class ='suivante'><a href='"+site+"'>Page Suivante</a></button>"
+   
+   message+= "<br><button type = 'button' value = 'Page Suivante' class ='bouton'><a href='"+site+"'><span></span><span></span><span></span><span></span>Page Suivante</a></button>"
+    
     /*Je créer le bouton pour aller sur la page suivante*/
     /*J'affiche le tout sur la page*/
      affiche2.innerHTML = message
@@ -655,6 +749,7 @@ function indice(div) {
     affiche3.remove(); // enlève si il existe
   } else {
     // Créer l'élement si il n'existe pas
+    centrer = document.createElement("center");
     affiche3 = document.createElement("div");
     affiche3.id = "indice";
     affiche3.classList.add("indice");
@@ -674,6 +769,7 @@ function indice(div) {
        afficher2.innerHTML = localStorage.getItem("tout")
     }
           var texte = document.createElement("p");
+          texte.classList.add("texte")
           texte.innerHTML = "Tu peux changer de question mais il y a "+chanceChanger+ "% de chance que ça ne marche pas et si ça marche tu perdra "+changePoint+" points, mais tu ne perdras jamais de points si tu triche et as la mauvaise réponse";
           affiche3.appendChild(texte);
           affiche3.appendChild(button);
@@ -689,6 +785,7 @@ function indice(div) {
          afficher2.innerHTML = localStorage.getItem("toutEnseignant")
       }
       var texte2 = document.createElement("p");
+      texte2.classList.add("texte");
       texte2.innerHTML = "Tu peux demander à ton enseignant mais il y a "+chanceEnseignant+ "% de chance que ça ne marche pas, mais que ça marche ou ne marche pas tu ne perdra pas de points"
       affiche3.appendChild(texte2);
       affiche3.appendChild(button2);
@@ -704,11 +801,13 @@ function indice(div) {
          afficher2.innerHTML = localStorage.getItem("toutEleve")
       }
       var texte3 = document.createElement("p");
+      texte3.classList.add("texte");
         texte3.innerHTML = "Tu peux demander a un eleve mais il y a "+chanceEleve+ "% de chance que l'élève n'accepte pas de donner la réponse, de plus si sa marche et l'élève te dis la réponse tu perdra "+pointEleve+" points, sur ton score total";
       affiche3.appendChild(texte3);
       affiche3.appendChild(button3);
       }
-    document.body.appendChild(affiche3); // Ajoute l'élément à la page
+      centrer.appendChild(affiche3)
+    document.body.appendChild(centrer); // Ajoute l'élément à la page
 }
 }
 
