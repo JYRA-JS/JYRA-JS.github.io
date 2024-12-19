@@ -136,6 +136,7 @@ function creerexam(leTitre,titres,options,types,reponses,div,nom,id,points,image
         } else if (type =='select'){
             /*Si c'est un select alors il faut d'abord commencer par créer un select avec son id et une option vide*/ 
             if (j === 0){
+                exam += "<p class='texte'>Le Bouton Pour sélectionner est juste en bas</p>"
                 exam += "<div class='select'><select id='"+id[i]+"' class = 'select-box'>"+"<option></option>"
             }
             /*Le select doit avoir une valeur de j donc l'option de réponses à l'index qu'on est donc 0,1,2 etc*/ 
@@ -295,7 +296,7 @@ function soumisExam(reponses,noms,div,ids,types,points,site){
    } else {
      phraseBonneRep = "bonnes réponse ";
    }
-      message += "Pour la question "+(k+1)+ " Tu as eu " + bonneRep + " / " + reponse.length +" "+phraseBonneRep+ "et tu as eu " + mauvaiseRep +" "+ phraseMauvaseRep +"<br>Tu as recu "+pointTrouver+" points et tu as eu une note de "+pourcentageExam+"%<br>";
+      message += "Pour la question "+(k+1)+ " Tu as eu " + bonneRep + "/" + reponse.length +" "+phraseBonneRep+ "et tu as eu " + mauvaiseRep +" "+ phraseMauvaseRep +"<br>Tu as recu "+pointTrouver+" points et tu as eu une note de "+pourcentageExam+"%<br>";
   /*On ajoute le nombre de point au total dans trois variable, sois les points pour l'examen
    , les points pour tout les examens et les points pour tout les test/examen, on utilise la fonction
    propre pour enlever les nombres décimal inutile*/
@@ -340,14 +341,23 @@ function soumisExam(reponses,noms,div,ids,types,points,site){
    if (site!="index.html"){
    message += "<br><button type = 'button' value = 'Page Suivante' class ='bouton'><a href='"+site+"'><span></span><span></span><span></span><span></span>Page Suivante</a></button>"
    } else{
+     if (pourcentageTotal<50){
+       message+="<br>Tu n'aurais définitivement pas passé la 6 année, avec une moyenne de "+pourcentageTotal+ "% mais tu peux toujours réesayer"
+     } else if (pourcentageTotal<70){
+       message+="<br>Tu as réussi à passer ta 6 année, pas sans problème, avec une note de "+pourcentageTotal+"% mais au moins tu saurais capable d'entrer au secondaire, probablement"
+     } else if (pourcentageTotal<90) {
+       message+="<br>On peut voir que tu connais relativement bien tes choses, avec un score de "+pourcentageTotal+"% tu fais toujours des erreurs mais tu est certainement plus, ou au moins aussi intelligent qu'un élève de 6ème année"
+     } else if (pourcentageTotal<100){
+       message+="<br>Très bon travail, tu n'a seulement fais que quelque fautes,et avec ta note de "+pourcentageTotal+"% tu est certainement capable de surpasser un élève de 6 année et de passer ton primaire"
+     } else {
+      message+="<br>Excellent travail, tu n'as eu aucune faute, sois tu est l'élève de sixième le plus intelligent de tout les temps ou tu as juste déjà passé ta 6 année, quoi que se sois bon travail"
+     }
+     message+="<br>Merci D'avoir participé à notre jeux"
         message += "<br><button type = 'button' value = 'Page Suivante' class ='bouton'><a href='"+site+"'><span></span><span></span><span></span><span></span>Retourner</a></button>"
    }
    /*On affiche le messsage*/
+   message = '<p class="texte">'+message+'</p>'
   affiche2.innerHTML = message;
-}
-function fin(div){
-  afficher = document.getElementById(div);
-  afficher.innerHtml = "allo";
 }
 function creer(titres,questions,reponses,div,nom,types,id,site,points,tricher,chancePoints,images){
     //Cette fonction créer un questionnaire avec les paramètres données, comme le titres, les questions, les réponses, le type de questions, etc
@@ -442,6 +452,7 @@ localStorage.setItem("chanceChanger",chanceChanger)
       } else if ((type =='select')){
           /*Si c'est un select alors il faut d'abord commencer par créer un select avec son id et une option vide*/ 
           if (i === 0){
+              tout += "<p class='texte'>Le Bouton pour sélectionner est juste en bas</p>"
               tout += "<div class='select'><select id='"+id+"' class = 'select-box'>"+"<option></option>"
           }
           /*Le select doit avoir une valeur de question[i] donc l'option de réponses*/ 
@@ -608,6 +619,7 @@ localStorage.setItem("chanceChanger",chanceChanger)
       } else if (type2 =='select'){
           /*Si c'est un select alors il faut d'abord commencer par créer un select avec son id et une option vide*/ 
           if (i === 0){
+             tout2 += "<p class='texte'>Le Bouton pour sélectionner est juste en bas</p>"
               tout2 += "<div class='select'><select id='"+id+"' class = 'select-box'>"+"<option></option>"
           }
           /*Le select doit avoir une valeur de question[i] donc l'option de réponses à l'index qu'on est donc 0,1,2 etc*/ 
@@ -728,9 +740,49 @@ if (site=="annee2.html"){
     /*Je créer le message qui dit à l'utilisateur combien de bonneRep il y a eu, combien de bonne réponses il/elle y a, combien de mauvaise réponses il/elle a eu, combien de point il/elle ont eu et combien de points il/elle on maintenant ainsi que leur moyenne*/
     image = image.split(",")
     var message =  "<img src='"+image[0]+"' class='photo' width='"+image[1]+"'><br>"
+    
  message +=  "Vous avez "+bonneRep+"/"+bonneRepTotal+" bonne réponse et "+mauvaiseRep+" mauvaise réponse"
+ if (points!=pointTrouver){
+    /*Je créer la bonne réponse si l'utilisateur ne l'a pas eu*/
+       var toutReponse = "<br>"
+    if (type=='text'){
+      var conjonction = "ou"
+    } else {
+      var conjonction = "et"
+    }
+    /*La for loop qui donne toute les réponses va itérer pour le nombre de réponses qu'il y a, donc si il y a 2 réponses sa va itérer 2 fois*/ 
+    for (i=0;i<reponse.length;i++){
+        /*La variable laReponse est la réponses avec # transformer en espace et les points virgule transformer en apostrophe pour que l'utilisateur voit la vrai réponse et non par exemple La#Russie si la réponse est La Russie*/
+        var laReponse = espace(reponse[i],'#'," ");
+             laReponse = espace(laReponse,';',"'");
+        if ((reponse.length!=1) && (i==0)){
+            /*Si il y a plus d'une réponse on doit commencer par les bonnes réponses, dire la première réponses et ensuite et*/
+            
+        if (i==reponse.length-2){
+            toutReponse += "Les bonnes réponses étaient: "+laReponse+" "+conjonction+" "
+          } else {
+            toutReponse += "Les bonnes réponses étaient: "+laReponse+" , "
+          }
+        } else if ((reponse.length!=1) && (i!=reponse.length-1)){
+            /*Si il y a plus d'une bonne réponses et qu'on n'est pas à la dernière réponses on doit dire la réponses et ensuite et*/
+          if (i==reponse.length-2){
+            toutReponse += laReponse+" "+conjonction+" "
+          } else {
+            toutReponse += laReponse+" , "
+          }
+        } else if (reponse.length!=1){
+            /*Se else if se passe seulement si il y a plus d'une réponses, et si le else if se passe ca veut dire que c'est la dernière réponse donc pas besoin de dire et*/
+            toutReponse += laReponse
+        } else {
+            /*Se si se passe seulement si il y a une seul bonne réponse et si c'est le cas on doit juste dire, la bonne réponses est + la réponses*/
+            toutReponse += "La bonnes réponse était " + laReponse
+        }
+
+    }
+    message += toutReponse+"<br>"
+    }
     if (pointTrouver==pointTrouverTricher){
- message+= "<br>Tu as recu " + pointTrouver+" points. Tu as maintenant "+ propre(utilisateurScore) + "/" + maxScore + "point. Tu as une moyennes de " + pourcentage + "%";
+ message+= "<br>Tu as recu " + pointTrouver+" points. Tu as maintenant "+ propre(utilisateurScore) + "/" + maxScore + "points. Tu as une moyenne de " + pourcentage + "%";
     } else {
         message+= "<br>Tu as recu " + pointTrouver +" mais tu a perdu " +indicePoints+" points, parce ce que tu as utilisé un indice.Tu as donc recu  "+pointTrouverTricher+" point et ton score est de "+ propre(utilisateurScore) + "/" + maxScore + "point. Tu as une moyenne de " + pourcentage + "%";
     }
@@ -810,3 +862,27 @@ function indice(div) {
     document.body.appendChild(centrer); // Ajoute l'élément à la page
 }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
