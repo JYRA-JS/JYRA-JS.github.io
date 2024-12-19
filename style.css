@@ -341,16 +341,19 @@ input[type="text"]{
 .questionPhoto{
     text-transform: uppercase;
     font-family: fantasy;
-    font-weight: 400;
+    font-weight: 600;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 3px black;
 }
 
-
+.question{
+      -webkit-text-stroke: 3px #0ef;
+}
 .clicker { 
 	cursor: pointer;
 	font-size: 1rem;
@@ -404,3 +407,7 @@ h2:hover {
 .texte{
   font-size:20px;
 }
+
+
+
+
