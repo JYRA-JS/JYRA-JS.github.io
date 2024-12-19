@@ -11,22 +11,23 @@
     
   </head>
  
-  <!--       Couleur de l'arrière plan -->
-  <body style="background-color:rgb(213, 160, 33);">
+  <!--       Image de l'arriere plan -->
+    <body style="background-image:url('https://static.vecteezy.com/system/resources/thumbnails/029/768/024/small_2x/green-school-board-in-school-classroom-ai-generated-photo.jpg');">
 
     
     <center>
     <h3>
       <br>
 
+      <!--           Images avant les questions -->
       <!--       Code et emplacement des questions (suivant plusieurs fonctions dans le document js)  -->
      <div id ="tout">
         <div id ="affiche6">
             <h1>Question de 6ème année</h1>
-            <input class="clicker" type="button" id="math6" onclick="creer(['Quel est le volume d\’un cube avec une longueur de 7cm, d\’une largeur de 8cm et d\’une profondeur de 5cm','Quel est le résultat de 15 - 2 * 6'],[['140cm^3','280cm^3','56cm^3','560cm^3'],['78','9','-3','19']],[['280cm^3'],['-3']],'affiche6','annee6',['radio','checkbox'],'math','exam.html','350',false,[[0,35,0],[35,50]],[['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRvb-mKmf95GdzurrHEtftMd77-hw6qcp3vA&s',100,'https://imageio.forbes.com/specials-images/imageserve/61d52d4e3a76ed81ac034ea8/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds','40px'],['https://thumbs.dreamstime.com/b/math-seamless-pattern-school-desk-background-science-74370000.jpg',100,'https://imageio.forbes.com/specials-images/imageserve/61d52d4e3a76ed81ac034ea8/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds','40px']])" value = "Math">
-            <input class="clicker" type="button" id="science6" onclick="creer(['Quel est l\’état de l\’eau à une température de 0°C ?','Quelle est la principale source d\’énergie pour la vie sur Terre ?'],[['Plasma','Liquide','Solide','Gazeux'],['Vent','Soleil','Volcan','Eau']],[['Liquide'],['Soleil']],'affiche6','annee6',['radio','select'],'geo','exam.html','350',false,[[70,35,55],[35,50]],[['https://static.vecteezy.com/ti/vecteur-libre/p1/1759756-geographie-fournitures-et-livres-vectoriel.jpg',200],['https://static.vecteezy.com/ti/vecteur-libre/p1/1759756-geographie-fournitures-et-livres-vectoriel.jpg',200]])" value = "Science">
-<input class="clicker" type="button" id="francais6" onclick="creer(['Quel est le sujet dans cette phrase : Le chat joue avec une balle ?','Dans la phrase suivante, quel est le complément d\’objet direct (COD) ? Paul mange une pomme.'],[['joue','balle','chat','une'],['Paul','mange','une#pomme', 'Pas#de#COD']],[['chat'],['Pas#de#COD']],'affiche6','annee6',['radio','select'],'francais','exam.html','350',false,[[70,35,55],[35,50]],[['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7kTyd2_k2z82IxEBDOMec9_o2jdkM1sHK9g&s',200],['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7kTyd2_k2z82IxEBDOMec9_o2jdkM1sHK9g&s',200]])" value = "Francais">
-        </div>
+             <img src="https://img.freepik.com/vecteurs-libre/fond-tableau-realiste-maths_23-2148159115.jpg" 
+ class="sujet" onclick="creer(['Quel est le volume d\’un cube avec une longueur de 7cm, d\’une largeur de 8cm et d\’une profondeur de 5cm','Quel est le résultat de 15 - 2 * 6'],[['140cm^3','280cm^3','56cm^3','560cm^3'],['78','9','-3','19']],[['280cm^3'],['-3']],'affiche6','annee6',['radio','checkbox'],'math','exam.html','350',false,[[0,35,0],[35,50]],[['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRvb-mKmf95GdzurrHEtftMd77-hw6qcp3vA&s',100,'https://imageio.forbes.com/specials-images/imageserve/61d52d4e3a76ed81ac034ea8/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds','40px'],['https://thumbs.dreamstime.com/b/math-seamless-pattern-school-desk-background-science-74370000.jpg',100,'https://imageio.forbes.com/specials-images/imageserve/61d52d4e3a76ed81ac034ea8/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds','40px']])" height="100">
+            <img src="https://img.freepik.com/vecteurs-libre/fond-education-scientifique-colore_23-2148490697.jpg?semt=ais_hybrid"  class="sujet"  onclick="creer(['Quel est l\’état de l\’eau à une température de 0°C ?','Quelle est la principale source d\’énergie pour la vie sur Terre ?'],[['Plasma','Liquide','Solide','Gazeux'],['Vent','Soleil','Volcan','Eau']],[['Liquide'],['Soleil']],'affiche6','annee6',['radio','select'],'geo','exam.html','350',false,[[70,35,55],[35,50]],[['https://littletogreatscientists.com/wp-content/uploads/2021/01/66-1.jpg',200],['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNlnqMqxUO3voyZIU7SU0tmhz3wazWx7CkGg&s',200]])" height="100">
+<img src = "https://as1.ftcdn.net/v2/jpg/02/27/81/06/1000_F_227810623_KeKPH32XBkMXlNk4rzf1KNaVaw0NlnYv.jpg" class="sujet" onclick="creer(['Quel est le sujet dans cette phrase : Le chat joue avec une balle ?','Dans la phrase suivante, quel est le complément d\’objet direct (COD) ? Paul mange une pomme.'],[['joue','balle','chat','une'],['Paul','mange','une#pomme', 'Pas#de#COD']],[['chat'],['Pas#de#COD']],'affiche6','annee6',['radio','select'],'francais','exam.html','350',false,[[70,35,55],[35,50]],[['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7kTyd2_k2z82IxEBDOMec9_o2jdkM1sHK9g&s',200],['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7kTyd2_k2z82IxEBDOMec9_o2jdkM1sHK9g&s',200]])" height="100">        </div>
     </div>
 
       <br>
